@@ -26,14 +26,20 @@ function addTask(){
 }
 
 function Mark(){
+    if(task_list.length ==0)
+    {
+        console.log("Task list is empty..")
+        askQuestion()
+    }
    read.question("Enter task id:",(task_id) =>{
+
     for(value of task_list){
         if(task_id==value.id){
             value.mark = "completed"
             console.log("Mark as completed successfully");
         }else
         {
-            console.log("Invalid id");
+            console.log(`${task_id}:ID is not Found`);
         }
     }
     askQuestion()
@@ -42,7 +48,8 @@ function Mark(){
 }
 
 function Delete(){
-    read.question("Enter id:" ,(task_id)=>{
+    read.question("ENTER ID:" ,(task_id)=>{
+        task_id = parseInt(task_id)
         for(value of task_list){
             if(task_id==value.id){
                 task_list.pop()
@@ -50,9 +57,10 @@ function Delete(){
                 
             }
             else{
-                console.log("Invaild Task ID.")
-                askQuestion()
+                console.log(`Invaild Task ID: ${task_id}`)
+               
             }
+            askQuestion()
        }})
 }
 
@@ -94,7 +102,12 @@ function askQuestion(){
         {
             Delete()
         }
+        if(num ==5){
+            console.log("Exiting Goodbye Thanks for using our Application")
+            read.close()
+        }
         else{
+            
            
         }
     
